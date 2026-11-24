@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>IPR 2.0: risco inerente como piso — Fiscalização Responsiva na ANTAQ</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+
+<style>:root { --tz-base: 1.2; }
+
+:root { --grA:#15803D; --grB:#0066CC; --grC:#DC2626; }
+body { margin:0; padding:0; overflow:hidden; font-family:'Open Sans',sans-serif; }
+.slide { width:100vw; height:100vh; position:relative; display:flex; flex-direction:column; overflow:hidden; background:#ffffff; }
+.font-montserrat { font-family:'Montserrat',sans-serif; }
+.text-brand { color:#003366; } .bg-brand { background-color:#003366; }
+.text-accent { color:#0066CC; } .bg-accent { background-color:#0066CC; }
+.header-bar { height:10px; background:#003366; width:100%; }
+.secondary-bar { height:4px; background:#0066CC; width:100%; }
+.stat-card { background:linear-gradient(135deg,#003366,#004d99); border-radius:16px; padding:18px 16px; text-align:center; color:white; position:relative; overflow:hidden; }
+.stat-num { font-family:'Montserrat',sans-serif; font-weight:900; font-size:calc(46px * var(--tz)); line-height:1; margin:0; }
+.stat-num small { font-size:.5em; font-weight:700; color:#FFD700; }
+.stat-lbl { font-size:calc(16px * var(--tz)); line-height:1.3; color:#BFD3E8; margin:6px 0 0; }
+.card { display:flex; align-items:flex-start; gap:16px; padding:14px 20px; background:#F8FAFC; border-radius:14px; border-left:5px solid #0066CC; }
+.card-green { background:linear-gradient(135deg,#F0FDF4,#DCFCE7); border-left-color:#22C55E; }
+.card-amber { background:linear-gradient(135deg,#FFFBEB,#FEF3C7); border-left-color:#F59E0B; }
+.card-red   { background:linear-gradient(135deg,#FEF2F2,#FEE2E2); border-left-color:#EF4444; }
+.card-gold  { background:linear-gradient(135deg,#FFFBEB,#FEF3C7); border-left-color:#FFD700; }
+.ico { width:50px; height:50px; border-radius:12px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:#DBEAFE; }
+.ico i { color:#0066CC; font-size:calc(22px * var(--tz)); }
+.card-amber .ico { background:#FDE68A; } .card-amber .ico i { color:#B45309; }
+.card-green .ico { background:#BBF7D0; } .card-green .ico i { color:#15803D; }
+.card-red .ico { background:#FECACA; } .card-red .ico i { color:#B91C1C; }
+.ct { font-family:'Montserrat',sans-serif; font-weight:700; color:#003366; font-size:calc(21px * var(--tz)); line-height:1.25; margin:0; }
+.cd { color:#475569; font-size:calc(17px * var(--tz)); line-height:1.45; margin:3px 0 0; }
+.cd b, .cd strong { color:#003366; }
+.pill { display:inline-block; padding:3px 12px; border-radius:999px; font-family:'Montserrat',sans-serif; font-weight:700; font-size:calc(14px * var(--tz)); letter-spacing:0.04em; }
+.pill-a { background:#DCFCE7; color:#166534; } .pill-b { background:#DBEAFE; color:#1E40AF; }
+.pill-c { background:#FEE2E2; color:#991B1B; } .pill-gold { background:#FEF3C7; color:#92400E; }
+.destaque { background:linear-gradient(135deg,#003366,#0066CC); color:#fff; border-radius:16px; padding:18px 26px; }
+.destaque p { margin:0; }
+.destaque b { color:#FFD700; }
+.legenda { color:#64748B; font-size:calc(14px * var(--tz)); line-height:1.5; margin:0; }
+.sec { font-family:'Montserrat',sans-serif; font-weight:700; font-size:calc(15px * var(--tz)); letter-spacing:.12em; text-transform:uppercase; color:#64748B; margin:0; }
+.hdr .text-5xl { font-size:46px; line-height:1; } .hdr .text-lg { font-size:19px; line-height:1.5; } .ftr .text-sm { font-size:14px; line-height:1.4; }
+.gap-3 { row-gap:22px; } .gap-4 { row-gap:24px; } .gap-5 { row-gap:26px; } .gap-6 { row-gap:28px; }
+.painel { background:#fff; border:1px solid #E2E8F0; border-radius:16px; padding:16px 22px 8px; box-shadow:0 1px 3px rgba(15,23,42,.05); }
+.painel .ct { margin-bottom:2px; }
+.graf { width:100%; }
+.segbar { display:flex; gap:3px; height:46px; width:100%; }
+.segbar .seg { border-radius:6px; display:flex; align-items:center; padding:0 14px; color:#fff; font-family:'Montserrat',sans-serif; font-weight:700; font-size:calc(18px * var(--tz)); white-space:nowrap; min-width:0; overflow:hidden; }
+.sw { display:inline-block; width:14px; height:14px; border-radius:4px; vertical-align:-1px; margin-right:7px; }
+.chaves { display:flex; flex-wrap:wrap; gap:6px 22px; color:#475569; font-family:'Montserrat',sans-serif; font-weight:600; font-size:calc(15px * var(--tz)); }
+.num-r { font-family:'Montserrat',sans-serif; font-weight:900; color:#003366; font-size:calc(30px * var(--tz)); line-height:1; margin:0; }
+.big { font-family:'Montserrat',sans-serif; font-weight:900; line-height:1; margin:0; }
+
+.fase { border-radius:16px; padding:16px 20px; color:#fff; }
+.fase p { margin:0; }
+.fase .ft { font-family:'Montserrat',sans-serif; font-weight:800; font-size:calc(21px * var(--tz)); }
+.fase .fd { font-size:calc(16px * var(--tz)); line-height:1.45; color:#E2E8F0; margin-top:4px !important; }
+.dim { display:flex; justify-content:space-between; font-size:calc(15px * var(--tz)); color:#fff; background:rgba(255,255,255,.12); border-radius:8px; padding:5px 12px; }
+.formula { background:#F8FAFC; border:2px dashed #0066CC; border-radius:16px; padding:16px 20px; text-align:center; }
+.formula p { margin:0; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="header-bar"></div>
+  <div class="secondary-bar"></div>
+
+  <div class="px-16 pt-6 pb-2 hdr">
+    <div class="flex items-center gap-3">
+      <div style="width:5px;height:44px;" class="bg-accent"></div>
+      <div>
+        <p class="font-montserrat font-bold text-gray-400 text-lg uppercase tracking-widest">Índice de Perfil ao Risco · Notas Técnicas nº 19 e 20/2026</p>
+        <p class="text-5xl font-montserrat font-bold text-brand uppercase tracking-tight">IPR 2.0: duas fases</p>
+      </div>
+      <div class="ml-auto flex items-center gap-3">
+        <span class="font-montserrat font-bold text-accent uppercase tracking-widest" style="font-size:15px;"><i class="fas fa-gauge-high"></i>&nbsp; IPR 2.0</span>
+        <img src="assets/logo-antaq-azul.png" alt="ANTAQ" style="height:32px;">
+        <p class="font-montserrat font-bold text-gray-400 tracking-wider" style="font-size:12px; line-height:1.35;">SFC<br/>GPF</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="flex-1 px-16 pb-4 grid grid-cols-12 gap-10 items-center min-h-0">
+    <div class="col-span-5 flex flex-col gap-4">
+      <div class="fase" style="background:linear-gradient(135deg,#7C2D12,#B45309);">
+        <p class="ft"><i class="fas fa-industry"></i>&nbsp; Fase 1 · Risco da atividade (IRA)</p>
+        <p class="fd">Propriedade da modalidade, não da empresa. Uma travessia tem o mesmo risco inerente, seja quem for o operador. <b style="color:#FFD700;">Não depende de fiscalização.</b></p>
+        <div class="grid grid-cols-2 gap-2" style="margin-top:10px;">
+          <div class="dim"><span>Segurança</span><b>35%</b></div><div class="dim"><span>Econômica</span><b>25%</b></div>
+          <div class="dim"><span>Ambiental</span><b>20%</b></div><div class="dim"><span>Usuário</span><b>20%</b></div>
+        </div>
+      </div>
+      <div class="fase" style="background:linear-gradient(135deg,#003366,#0066CC);">
+        <p class="ft"><i class="fas fa-chart-column"></i>&nbsp; Fase 2 · Comportamento (IPR base)</p>
+        <p class="fd">Dez indicadores ponderados, pesos somando 21. Cinco deles são novos e quatro não dependem de ter havido fiscalização.</p>
+      </div>
+      <div class="formula">
+        <p class="font-montserrat font-black text-brand" style="font-size:calc(30px * var(--tz));">IPR = maior entre piso e base</p>
+        <p class="cd" style="margin-top:6px !important;">Regulado de alto risco inerente <b>não cai em faixa de baixa prioridade</b> só por não ter histórico de infração.</p>
+      </div>
+    </div>
+    <div class="col-span-7 flex flex-col gap-4">
+      <div class="painel">
+        <div class="flex items-end justify-between"><div><p class="ct">Os dez indicadores e seus pesos</p>
+          <p class="cd" style="margin:0;">Peso de cada um no IPR base</p></div>
+          <div class="chaves"><span><span class="sw" style="background:#0066CC;"></span>Vigente, corrigido</span><span><span class="sw" style="background:#D97706;"></span>Novo ou refeito no IPR 2.0</span></div></div>
+        <div id="g-pesos" class="graf" style="height:600px;"></div>
+      </div>
+      <p class="legenda">Fonte: Notas Técnicas nº 19 e 20/2026/GPF/SFC; pesos vigentes no Painel de Risco da Fiscalização em 24/11/2026. O ICD mede a classe de acesso ao local (mesma sede, viatura, barco ou avião), não a distância em linha reta.</p>
+    </div>
+  </div>
+
+  <div class="px-16 pb-4 flex justify-between items-center border-t border-gray-100 pt-3 mx-8 ftr">
+    <p class="text-gray-400 text-sm">Fiscalização Responsiva na ANTAQ · 2ª Oficina de Integração · ANA, 25/11/2026 · SFC — ANTAQ</p>
+    <p class="text-gray-300 text-sm font-mono">6 / 15</p>
+  </div>
+</div>
+<script src="zoom.js"></script>
+<script src="anim.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script src="graficos.js"></script>
+<script>
+(function(){ var C = G.C;
+
+var d = [["ICF", "Cobertura: há quanto tempo não é fiscalizada", 3, true], ["IGI", "Gravidade das infrações", 3, false], ["IOC", "Ocorrência de infração crítica", 3, false], ["IRI", "Reincidência", 3, false], ["INN", "Notificações não atendidas", 2, false], ["IOU", "Manifestações na Ouvidoria", 2, true], ["IVO", "Volume operacional", 2, true], ["IIN", "Irregularidade normativa", 1, false], ["ICD", "Custo-distância: classe de acesso", 1, true], ["IMA", "Maturidade: idade e porte da empresa", 1, true]];
+G.desenha('g-pesos', {
+  grid: { left: 470, right: 50, top: 10, bottom: 6 },
+  tooltip: G.dica({ trigger: 'item', formatter: function (p) { var x = d[p.dataIndex];
+    return '<b>' + x[0] + '</b> · ' + x[1] + '<br/>Peso ' + G.num(x[2]) + ' de 21' + (x[3] ? '<br/>Novo no IPR 2.0' : ''); } }),
+  xAxis: G.eixoVal({ show: false, max: 3.3 }),
+  yAxis: G.eixoCat(d.map(function (x) { return x[0] + '  ' + x[1]; }), { inverse: true, axisLine: { show: false },
+    axisLabel: { color: C.tinta2, fontFamily: G.FT, fontSize: 16.5, fontWeight: 600, margin: 14,
+      formatter: function (v) { var i = v.indexOf('  '); return '{s|' + v.slice(0, i) + '}  ' + v.slice(i + 2); },
+      rich: { s: { fontFamily: G.FT, fontWeight: 900, fontSize: 17, color: C.marca } } } }),
+  series: [{ type: 'bar', barWidth: 22, data: d.map(function (x) { return { value: x[2],
+      itemStyle: { color: x[3] ? '#D97706' : C.porto, borderRadius: [0, 5, 5, 0] } }; }),
+    label: { show: true, position: 'right', distance: 8, color: C.tinta, fontFamily: G.FT, fontWeight: 700, fontSize: 18 } }]
+});
+
+})();
+</script>
+<script>document.addEventListener("keydown",function(e){if(["ArrowRight","ArrowLeft","PageDown","PageUp","Home","End"," ","f","F"].indexOf(e.key)!==-1){e.preventDefault();window.parent.postMessage({type:"slide-nav",key:e.key},"*");}});</script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Equalização da carga — Fiscalização Responsiva na ANTAQ</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+
+<style>:root { --tz-base: 1.15; }
+
+:root { --grA:#15803D; --grB:#0066CC; --grC:#DC2626; }
+body { margin:0; padding:0; overflow:hidden; font-family:'Open Sans',sans-serif; }
+.slide { width:100vw; height:100vh; position:relative; display:flex; flex-direction:column; overflow:hidden; background:#ffffff; }
+.font-montserrat { font-family:'Montserrat',sans-serif; }
+.text-brand { color:#003366; } .bg-brand { background-color:#003366; }
+.text-accent { color:#0066CC; } .bg-accent { background-color:#0066CC; }
+.header-bar { height:10px; background:#003366; width:100%; }
+.secondary-bar { height:4px; background:#0066CC; width:100%; }
+.stat-card { background:linear-gradient(135deg,#003366,#004d99); border-radius:16px; padding:18px 16px; text-align:center; color:white; position:relative; overflow:hidden; }
+.stat-num { font-family:'Montserrat',sans-serif; font-weight:900; font-size:calc(46px * var(--tz)); line-height:1; margin:0; }
+.stat-num small { font-size:.5em; font-weight:700; color:#FFD700; }
+.stat-lbl { font-size:calc(16px * var(--tz)); line-height:1.3; color:#BFD3E8; margin:6px 0 0; }
+.card { display:flex; align-items:flex-start; gap:16px; padding:14px 20px; background:#F8FAFC; border-radius:14px; border-left:5px solid #0066CC; }
+.card-green { background:linear-gradient(135deg,#F0FDF4,#DCFCE7); border-left-color:#22C55E; }
+.card-amber { background:linear-gradient(135deg,#FFFBEB,#FEF3C7); border-left-color:#F59E0B; }
+.card-red   { background:linear-gradient(135deg,#FEF2F2,#FEE2E2); border-left-color:#EF4444; }
+.card-gold  { background:linear-gradient(135deg,#FFFBEB,#FEF3C7); border-left-color:#FFD700; }
+.ico { width:50px; height:50px; border-radius:12px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:#DBEAFE; }
+.ico i { color:#0066CC; font-size:calc(22px * var(--tz)); }
+.card-amber .ico { background:#FDE68A; } .card-amber .ico i { color:#B45309; }
+.card-green .ico { background:#BBF7D0; } .card-green .ico i { color:#15803D; }
+.card-red .ico { background:#FECACA; } .card-red .ico i { color:#B91C1C; }
+.ct { font-family:'Montserrat',sans-serif; font-weight:700; color:#003366; font-size:calc(21px * var(--tz)); line-height:1.25; margin:0; }
+.cd { color:#475569; font-size:calc(17px * var(--tz)); line-height:1.45; margin:3px 0 0; }
+.cd b, .cd strong { color:#003366; }
+.pill { display:inline-block; padding:3px 12px; border-radius:999px; font-family:'Montserrat',sans-serif; font-weight:700; font-size:calc(14px * var(--tz)); letter-spacing:0.04em; }
+.pill-a { background:#DCFCE7; color:#166534; } .pill-b { background:#DBEAFE; color:#1E40AF; }
+.pill-c { background:#FEE2E2; color:#991B1B; } .pill-gold { background:#FEF3C7; color:#92400E; }
+.destaque { background:linear-gradient(135deg,#003366,#0066CC); color:#fff; border-radius:16px; padding:18px 26px; }
+.destaque p { margin:0; }
+.destaque b { color:#FFD700; }
+.legenda { color:#64748B; font-size:calc(14px * var(--tz)); line-height:1.5; margin:0; }
+.sec { font-family:'Montserrat',sans-serif; font-weight:700; font-size:calc(15px * var(--tz)); letter-spacing:.12em; text-transform:uppercase; color:#64748B; margin:0; }
+.hdr .text-5xl { font-size:46px; line-height:1; } .hdr .text-lg { font-size:19px; line-height:1.5; } .ftr .text-sm { font-size:14px; line-height:1.4; }
+.gap-3 { row-gap:22px; } .gap-4 { row-gap:24px; } .gap-5 { row-gap:26px; } .gap-6 { row-gap:28px; }
+.painel { background:#fff; border:1px solid #E2E8F0; border-radius:16px; padding:16px 22px 8px; box-shadow:0 1px 3px rgba(15,23,42,.05); }
+.painel .ct { margin-bottom:2px; }
+.graf { width:100%; }
+.segbar { display:flex; gap:3px; height:46px; width:100%; }
+.segbar .seg { border-radius:6px; display:flex; align-items:center; padding:0 14px; color:#fff; font-family:'Montserrat',sans-serif; font-weight:700; font-size:calc(18px * var(--tz)); white-space:nowrap; min-width:0; overflow:hidden; }
+.sw { display:inline-block; width:14px; height:14px; border-radius:4px; vertical-align:-1px; margin-right:7px; }
+.chaves { display:flex; flex-wrap:wrap; gap:6px 22px; color:#475569; font-family:'Montserrat',sans-serif; font-weight:600; font-size:calc(15px * var(--tz)); }
+.num-r { font-family:'Montserrat',sans-serif; font-weight:900; color:#003366; font-size:calc(30px * var(--tz)); line-height:1; margin:0; }
+.big { font-family:'Montserrat',sans-serif; font-weight:900; line-height:1; margin:0; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="header-bar"></div>
+  <div class="secondary-bar"></div>
+
+  <div class="px-16 pt-6 pb-2 hdr">
+    <div class="flex items-center gap-3">
+      <div style="width:5px;height:44px;" class="bg-accent"></div>
+      <div>
+        <p class="font-montserrat font-bold text-gray-400 text-lg uppercase tracking-widest">Redistribuir com regra e registro</p>
+        <p class="text-5xl font-montserrat font-bold text-brand uppercase tracking-tight">Equalização da carga</p>
+      </div>
+      <div class="ml-auto flex items-center gap-3">
+        <span class="font-montserrat font-bold text-accent uppercase tracking-widest" style="font-size:15px;"><i class="fas fa-calendar-check"></i>&nbsp; PAF 2027</span>
+        <img src="assets/logo-antaq-azul.png" alt="ANTAQ" style="height:32px;">
+        <p class="font-montserrat font-bold text-gray-400 tracking-wider" style="font-size:12px; line-height:1.35;">SFC<br/>GPF</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="flex-1 px-16 pb-4 grid grid-cols-12 gap-10 items-center min-h-0">
+    <div class="col-span-5 flex flex-col gap-4">
+      <div class="card "><div class="ico"><i class="fas fa-boxes-stacked"></i></div><div><p class="ct">Lotes que se movem inteiros</p><p class="cd">Outorgas da mesma unidade, localidade e modalidade viajam juntas: fiscalizar vinte travessias num lugar custa, em deslocamento, quase o mesmo que fiscalizar uma.</p></div></div>
+      <div class="card "><div class="ico"><i class="fas fa-people-arrows"></i></div><div><p class="ct">Dois instrumentos</p><p class="cd"><b>Transferência</b>: outra unidade executa no ciclo. <b>Missão de apoio</b>: a origem conduz o processo e outra unidade faz a vistoria, as fases de escritório ou tudo.</p></div></div>
+      <div class="card "><div class="ico"><i class="fas fa-scale-unbalanced-flip"></i></div><div><p class="ct">Critérios ponderados de destino</p><p class="cd">Folga da receptora <b>40%</b> · proximidade <b>35%</b> · afinidade com a carteira <b>15%</b> · jurisdição <b>10%</b>. Nenhuma receptora passa de 90% nem absorve mais de 45% do excesso.</p></div></div>
+      <div class="card card-gold"><div class="ico"><i class="fas fa-gavel"></i></div><div><p class="ct">A regra propõe, o gestor decide</p><p class="cd">Cada movimento é aprovado, rejeitado ou redirecionado, com autor e fundamento. A jurisdição não muda: a camada vale para o ciclo.</p></div></div>
+    </div>
+    <div class="col-span-7 flex flex-col gap-4">
+      <div class="painel">
+        <p class="ct">Ocupação da capacidade para o PAF</p>
+        <p class="cd" style="margin:0;">As quatro unidades acima do limite, antes e depois dos movimentos aprovados</p>
+        <div id="g-eq" class="graf" style="height:400px;"></div>
+      </div>
+      <div class="grid grid-cols-3 gap-4">
+        <div class="stat-card"><p class="stat-num">46</p><p class="stat-lbl">movimentos propostos,<br/>todos aprovados</p></div>
+        <div class="stat-card"><p class="stat-num">152</p><p class="stat-lbl">outorgas alcançadas<br/>de 1.981 lotes</p></div>
+        <div class="stat-card"><p class="stat-num">9.584 h</p><p class="stat-lbl">redistribuídas entre<br/>as unidades</p></div>
+      </div>
+      <div class="destaque flex items-center gap-5">
+        <i class="fas fa-route" style="font-size:calc(40px * var(--tz)); color:#FFD700;"></i>
+        <p style="font-size:calc(17px * var(--tz)); color:#DBEAFE; line-height:1.5;"><b>Travessias do Oiapoque (AP)</b>: 56 outorgas da unidade de Santana. A vistoria é feita pela equipe de São Luís e o escritório pela de Salvador, <b>numa única ida ao local</b>.</p>
+      </div>
+      <p class="legenda">Fonte: Nota Técnica nº 35/2026/GPF/SFC, seção 8 e Quadro 7. 28 transferências (2.304 h) e 18 missões de apoio (7.280 h).</p>
+    </div>
+  </div>
+
+  <div class="px-16 pb-4 flex justify-between items-center border-t border-gray-100 pt-3 mx-8 ftr">
+    <p class="text-gray-400 text-sm">Fiscalização Responsiva na ANTAQ · 2ª Oficina de Integração · ANA, 25/11/2026 · SFC — ANTAQ</p>
+    <p class="text-gray-300 text-sm font-mono">11 / 15</p>
+  </div>
+</div>
+<script src="zoom.js"></script>
+<script src="anim.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script src="graficos.js"></script>
+<script>
+(function(){ var C = G.C;
+
+var u = ["Santana (AP)", "Belém (PA)", "Manaus (AM)", "Porto Alegre (RS)"], antes = [406.3, 141.1, 127.5, 103.6], depois = [98.1, 99.1, 99.9, 94.0];
+G.desenha('g-eq', {
+  grid: { left: 190, right: 90, top: 46, bottom: 34 },
+  legend: G.legenda({ data: ['Antes', 'Depois da equalização'] }),
+  tooltip: G.dica({ trigger: 'axis', axisPointer: { type: 'shadow', shadowStyle: { color: 'rgba(148,163,184,.14)' } },
+    formatter: function (ps) { return '<b>' + ps[0].name + '</b><br/>' + ps.map(function (p) { return p.marker + p.seriesName + ': <b>' + G.pct(p.value) + '</b>'; }).join('<br/>'); } }),
+  xAxis: G.eixoVal({ show: false, max: 440 }),
+  yAxis: G.eixoCat(u, { inverse: true, axisLine: { show: false }, axisLabel: { color: C.tinta2, fontFamily: G.FT, fontSize: 18, fontWeight: 600, margin: 14 } }),
+  series: [
+    { name: 'Antes', type: 'bar', data: antes, barWidth: 22, barGap: '25%', itemStyle: { color: '#DC2626', borderRadius: [0, 5, 5, 0] },
+       label: { show: true, position: 'right', color: C.tinta, fontFamily: G.FT, fontWeight: 700, fontSize: 17, formatter: function (p) { return G.pct(p.value, 0); } },
+       markLine: { symbol: 'none', silent: true, data: [{ xAxis: 100 }], lineStyle: { color: '#003366', type: 'dashed', width: 2 },
+         label: { position: 'end', formatter: 'limite 100%', color: '#003366', fontFamily: G.FT, fontWeight: 700, fontSize: 15 } } },
+    { name: 'Depois da equalização', type: 'bar', data: depois, barWidth: 22, itemStyle: { color: '#15803D', borderRadius: [0, 5, 5, 0] },
+       label: { show: true, position: 'right', color: C.tinta, fontFamily: G.FT, fontWeight: 700, fontSize: 17, formatter: function (p) { return G.pct(p.value, 1); } } }
+  ]
+});
+
+})();
+</script>
+<script>document.addEventListener("keydown",function(e){if(["ArrowRight","ArrowLeft","PageDown","PageUp","Home","End"," ","f","F"].indexOf(e.key)!==-1){e.preventDefault();window.parent.postMessage({type:"slide-nav",key:e.key},"*");}});</script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Da faixa à solução fiscal — Fiscalização Responsiva na ANTAQ</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+
+<style>:root { --tz-base: 1.15; }
+
+:root { --grA:#15803D; --grB:#0066CC; --grC:#DC2626; }
+body { margin:0; padding:0; overflow:hidden; font-family:'Open Sans',sans-serif; }
+.slide { width:100vw; height:100vh; position:relative; display:flex; flex-direction:column; overflow:hidden; background:#ffffff; }
+.font-montserrat { font-family:'Montserrat',sans-serif; }
+.text-brand { color:#003366; } .bg-brand { background-color:#003366; }
+.text-accent { color:#0066CC; } .bg-accent { background-color:#0066CC; }
+.header-bar { height:10px; background:#003366; width:100%; }
+.secondary-bar { height:4px; background:#0066CC; width:100%; }
+.stat-card { background:linear-gradient(135deg,#003366,#004d99); border-radius:16px; padding:18px 16px; text-align:center; color:white; position:relative; overflow:hidden; }
+.stat-num { font-family:'Montserrat',sans-serif; font-weight:900; font-size:calc(46px * var(--tz)); line-height:1; margin:0; }
+.stat-num small { font-size:.5em; font-weight:700; color:#FFD700; }
+.stat-lbl { font-size:calc(16px * var(--tz)); line-height:1.3; color:#BFD3E8; margin:6px 0 0; }
+.card { display:flex; align-items:flex-start; gap:16px; padding:14px 20px; background:#F8FAFC; border-radius:14px; border-left:5px solid #0066CC; }
+.card-green { background:linear-gradient(135deg,#F0FDF4,#DCFCE7); border-left-color:#22C55E; }
+.card-amber { background:linear-gradient(135deg,#FFFBEB,#FEF3C7); border-left-color:#F59E0B; }
+.card-red   { background:linear-gradient(135deg,#FEF2F2,#FEE2E2); border-left-color:#EF4444; }
+.card-gold  { background:linear-gradient(135deg,#FFFBEB,#FEF3C7); border-left-color:#FFD700; }
+.ico { width:50px; height:50px; border-radius:12px; flex-shrink:0; display:flex; align-items:center; justify-content:center; background:#DBEAFE; }
+.ico i { color:#0066CC; font-size:calc(22px * var(--tz)); }
+.card-amber .ico { background:#FDE68A; } .card-amber .ico i { color:#B45309; }
+.card-green .ico { background:#BBF7D0; } .card-green .ico i { color:#15803D; }
+.card-red .ico { background:#FECACA; } .card-red .ico i { color:#B91C1C; }
+.ct { font-family:'Montserrat',sans-serif; font-weight:700; color:#003366; font-size:calc(21px * var(--tz)); line-height:1.25; margin:0; }
+.cd { color:#475569; font-size:calc(17px * var(--tz)); line-height:1.45; margin:3px 0 0; }
+.cd b, .cd strong { color:#003366; }
+.pill { display:inline-block; padding:3px 12px; border-radius:999px; font-family:'Montserrat',sans-serif; font-weight:700; font-size:calc(14px * var(--tz)); letter-spacing:0.04em; }
+.pill-a { background:#DCFCE7; color:#166534; } .pill-b { background:#DBEAFE; color:#1E40AF; }
+.pill-c { background:#FEE2E2; color:#991B1B; } .pill-gold { background:#FEF3C7; color:#92400E; }
+.destaque { background:linear-gradient(135deg,#003366,#0066CC); color:#fff; border-radius:16px; padding:18px 26px; }
+.destaque p { margin:0; }
+.destaque b { color:#FFD700; }
+.legenda { color:#64748B; font-size:calc(14px * var(--tz)); line-height:1.5; margin:0; }
+.sec { font-family:'Montserrat',sans-serif; font-weight:700; font-size:calc(15px * var(--tz)); letter-spacing:.12em; text-transform:uppercase; color:#64748B; margin:0; }
+.hdr .text-5xl { font-size:46px; line-height:1; } .hdr .text-lg { font-size:19px; line-height:1.5; } .ftr .text-sm { font-size:14px; line-height:1.4; }
+.gap-3 { row-gap:22px; } .gap-4 { row-gap:24px; } .gap-5 { row-gap:26px; } .gap-6 { row-gap:28px; }
+.painel { background:#fff; border:1px solid #E2E8F0; border-radius:16px; padding:16px 22px 8px; box-shadow:0 1px 3px rgba(15,23,42,.05); }
+.painel .ct { margin-bottom:2px; }
+.graf { width:100%; }
+.segbar { display:flex; gap:3px; height:46px; width:100%; }
+.segbar .seg { border-radius:6px; display:flex; align-items:center; padding:0 14px; color:#fff; font-family:'Montserrat',sans-serif; font-weight:700; font-size:calc(18px * var(--tz)); white-space:nowrap; min-width:0; overflow:hidden; }
+.sw { display:inline-block; width:14px; height:14px; border-radius:4px; vertical-align:-1px; margin-right:7px; }
+.chaves { display:flex; flex-wrap:wrap; gap:6px 22px; color:#475569; font-family:'Montserrat',sans-serif; font-weight:600; font-size:calc(15px * var(--tz)); }
+.num-r { font-family:'Montserrat',sans-serif; font-weight:900; color:#003366; font-size:calc(30px * var(--tz)); line-height:1; margin:0; }
+.big { font-family:'Montserrat',sans-serif; font-weight:900; line-height:1; margin:0; }
+
+.pf { display:flex; align-items:center; gap:14px; }
+.pf .bloco { height:58px; border-radius:8px; display:flex; align-items:center; justify-content:space-between; padding:0 18px; color:#fff; margin:0 auto; }
+.pf .bloco p { margin:0; }
+.pf .fx { font-family:'Montserrat',sans-serif; font-weight:900; font-size:calc(24px * var(--tz)); }
+.pf .sol { font-size:calc(15.5px * var(--tz)); line-height:1.2; text-align:center; flex:1; padding:0 10px; }
+.pf .qt { font-family:'Montserrat',sans-serif; font-weight:800; font-size:calc(20px * var(--tz)); }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="header-bar"></div>
+  <div class="secondary-bar"></div>
+
+  <div class="px-16 pt-6 pb-2 hdr">
+    <div class="flex items-center gap-3">
+      <div style="width:5px;height:44px;" class="bg-accent"></div>
+      <div>
+        <p class="font-montserrat font-bold text-gray-400 text-lg uppercase tracking-widest">Pirâmide ANTAQ · ciclo PAF 2027</p>
+        <p class="text-5xl font-montserrat font-bold text-brand uppercase tracking-tight">Da faixa à solução fiscal</p>
+      </div>
+      <div class="ml-auto flex items-center gap-3">
+        <span class="font-montserrat font-bold text-accent uppercase tracking-widest" style="font-size:15px;"><i class="fas fa-gauge-high"></i>&nbsp; IPR 2.0</span>
+        <img src="assets/logo-antaq-azul.png" alt="ANTAQ" style="height:32px;">
+        <p class="font-montserrat font-bold text-gray-400 tracking-wider" style="font-size:12px; line-height:1.35;">SFC<br/>GPF</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="flex-1 px-16 pb-4 grid grid-cols-12 gap-10 items-center min-h-0">
+    <div class="col-span-6 flex flex-col gap-3">
+      <div class="flex items-end justify-between"><p class="sec">Faixa · solução fiscal · outorgas ativas</p>
+        <div class="chaves"><span><span class="sw" style="background:#15803D;"></span>Grupo A</span><span><span class="sw" style="background:#0066CC;"></span>Grupo B</span><span><span class="sw" style="background:#DC2626;"></span>Grupo C</span></div></div>
+      <div class="painel flex flex-col" style="gap:6px; padding:16px 18px;"><div class="pf"><div class="bloco" style="width:46.0%; background:#7F1D1D;"><p class="fx">C4</p><p class="sol">Intervenção técnica, com possível medida cautelar</p><p class="qt">37</p></div></div>
+<div class="pf"><div class="bloco" style="width:53.7%; background:#991B1B;"><p class="fx">C3</p><p class="sol">Ação presencial intensiva</p><p class="qt">90</p></div></div>
+<div class="pf"><div class="bloco" style="width:61.4%; background:#B91C1C;"><p class="fx">C2</p><p class="sol">Ação presencial sem aviso prévio</p><p class="qt">190</p></div></div>
+<div class="pf"><div class="bloco" style="width:69.1%; background:#DC2626;"><p class="fx">C1</p><p class="sol">Ação presencial programada</p><p class="qt">265</p></div></div>
+<div class="pf"><div class="bloco" style="width:76.9%; background:#1E40AF;"><p class="fx">B2</p><p class="sol">Ação remota com ação à distância</p><p class="qt">505</p></div></div>
+<div class="pf"><div class="bloco" style="width:84.6%; background:#0066CC;"><p class="fx">B1</p><p class="sol">Ação remota documental</p><p class="qt">908</p></div></div>
+<div class="pf"><div class="bloco" style="width:92.3%; background:#15803D;"><p class="fx">A2</p><p class="sol">Monitoramento e sorteio</p><p class="qt">154</p></div></div>
+<div class="pf"><div class="bloco" style="width:100.0%; background:#16A34A;"><p class="fx">A1</p><p class="sol">Monitoramento e sorteio</p><p class="qt">278</p></div></div></div>
+      <div class="card "><div class="ico"><i class="fas fa-file-lines"></i></div><div><p class="ct">A forma muda, a faixa não</p><p class="cd">Na navegação marítima e na interior longitudinal de carga, a ação é sempre documental, porque a verificação se cumpre por documentos. A dispensa alcança 191 outorgas do Grupo C.</p></div></div>
+    </div>
+    <div class="col-span-6 flex flex-col gap-4">
+      <div class="painel">
+        <p class="ct">A pirâmide voltou a ter forma</p>
+        <p class="cd" style="margin:0;">Distribuição das outorgas por faixa, antes e depois do IPR 2.0</p>
+        <div id="g-dist" class="graf" style="height:420px;"></div>
+      </div>
+      <div class="destaque flex items-center gap-6">
+        <p class="big" style="font-size:calc(58px * var(--tz)); color:#FFD700;">2.427</p>
+        <p style="font-size:calc(18px * var(--tz)); color:#DBEAFE; line-height:1.45;">outorgas ativas classificadas. Em A1, caiu de <b>83,7%</b> para <b>11,5%</b>; C3 e C4, antes vazias, têm <b>127</b> outorgas.</p>
+      </div>
+      <p class="legenda">Fonte: Nota Técnica nº 35/2026/GPF/SFC, Quadro 2 (data de referência 30/09/2026) e diagnóstico de abril de 2026 (2.543 outorgas). As faixas do IPR 2.0 foram recalibradas sobre o ciclo 2027.</p>
+    </div>
+  </div>
+
+  <div class="px-16 pb-4 flex justify-between items-center border-t border-gray-100 pt-3 mx-8 ftr">
+    <p class="text-gray-400 text-sm">Fiscalização Responsiva na ANTAQ · 2ª Oficina de Integração · ANA, 25/11/2026 · SFC — ANTAQ</p>
+    <p class="text-gray-300 text-sm font-mono">7 / 15</p>
+  </div>
+</div>
+<script src="zoom.js"></script>
+<script src="anim.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+<script src="graficos.js"></script>
+<script>
+(function(){ var C = G.C;
+
+var fx = ["A1", "A2", "B1", "B2", "C1", "C2", "C3", "C4"], antes = [83.7, 5.2, 8.8, 1.5, 0.7, 0.1, 0.0, 0.0], depois = [11.5, 6.3, 37.4, 20.8, 10.9, 7.8, 3.7, 1.5];
+G.desenha('g-dist', {
+  grid: { left: 20, right: 10, top: 50, bottom: 30 },
+  legend: G.legenda({ data: ['IPR anterior · abr/2026', 'IPR 2.0 · ciclo 2027'] }),
+  tooltip: G.dica({ trigger: 'axis', axisPointer: { type: 'shadow', shadowStyle: { color: 'rgba(148,163,184,.14)' } },
+    formatter: function (ps) { return '<b>' + ps[0].name + '</b><br/>' + ps.map(function (p) { return p.marker + p.seriesName + ': <b>' + G.pct(p.value) + '</b>'; }).join('<br/>'); } }),
+  xAxis: G.eixoCat(fx),
+  yAxis: G.eixoVal({ show: false, max: 92 }),
+  series: [
+    { name: 'IPR anterior · abr/2026', type: 'bar', data: antes, barGap: '10%', barWidth: '36%', itemStyle: { color: C.antes, borderRadius: [4, 4, 0, 0] },
+       label: { show: true, position: 'top', color: C.apagado, fontFamily: G.FT, fontWeight: 700, fontSize: 15,
+         formatter: function (p) { return p.value >= 5 ? G.pct(p.value, 0) : ''; } } },
+    { name: 'IPR 2.0 · ciclo 2027', type: 'bar', data: depois, barWidth: '36%', itemStyle: { color: C.marca, borderRadius: [4, 4, 0, 0] },
+       label: { show: true, position: 'top', color: C.tinta, fontFamily: G.FT, fontWeight: 700, fontSize: 15,
+         formatter: function (p) { return G.pct(p.value, 0); } } }
+  ]
+});
+
+})();
+</script>
+<script>document.addEventListener("keydown",function(e){if(["ArrowRight","ArrowLeft","PageDown","PageUp","Home","End"," ","f","F"].indexOf(e.key)!==-1){e.preventDefault();window.parent.postMessage({type:"slide-nav",key:e.key},"*");}});</script>
+</body>
+</html>

@@ -631,23 +631,18 @@ slide(9, 3, "Sorteio auditável do Grupo A", "Amostragem aleatória · executada
       <div class="card passo card-green"><div class="nb" style="background:#15803D; color:#fff;"><i class="fas fa-check"></i></div><div><p class="ct">Conferência</p><p class="cd">Ata e programa estão no processo. O programa roda em qualquer computador com Python, sem acesso aos sistemas da Agência, e <b>falha se qualquer outorga for incluída, retirada ou trocada</b>.</p></div></div>
     </div>
     <div class="col-span-6 flex flex-col gap-4">
-      <p class="sec">Taxa de sorteio conforme o risco da atividade (IRA)</p>
+      <p class="sec">Quanto maior o risco da atividade, maior a chance</p>
       <div class="grid grid-cols-3 gap-4">
-        <div class="taxa" style="background:#FEE2E2;"><p class="big" style="font-size:calc(46px * var(--tz)); color:#991B1B;">10%</p><p class="cd">IRA de 70 ou mais</p></div>
-        <div class="taxa" style="background:#FEF3C7; outline:3px solid #F59E0B;"><p class="big" style="font-size:calc(46px * var(--tz)); color:#92400E;">7%</p><p class="cd">IRA de 35 a 69<br/><b>aplicada em 2027</b></p></div>
-        <div class="taxa" style="background:#DCFCE7;"><p class="big" style="font-size:calc(46px * var(--tz)); color:#166534;">5%</p><p class="cd">IRA até 34</p></div>
+        <div class="taxa" style="background:#FEE2E2;"><p class="big" style="font-size:calc(50px * var(--tz)); color:#991B1B;">10%</p><p class="cd">risco da atividade<br/><b>alto</b></p></div>
+        <div class="taxa" style="background:#FEF3C7;"><p class="big" style="font-size:calc(50px * var(--tz)); color:#92400E;">7%</p><p class="cd">risco da atividade<br/><b>médio</b></p></div>
+        <div class="taxa" style="background:#DCFCE7;"><p class="big" style="font-size:calc(50px * var(--tz)); color:#166534;">5%</p><p class="cd">risco da atividade<br/><b>baixo</b></p></div>
       </div>
-      <div class="grid grid-cols-3 gap-4">
-        {stat("35<small> de 432</small>", "outorgas sorteadas<br/>(30,2 esperadas)")}
-        {stat("9", "estratos por modalidade,<br/>arredondados para cima")}
-        {stat("18<small> + 17</small>", "presenciais + documentais<br/>(marítima e interior de carga)")}
+      <div class="destaque flex items-center gap-6">
+        <p class="big" style="font-size:calc(58px * var(--tz)); color:#FFD700; white-space:nowrap;">35<span style="font-size:.45em; color:#DBEAFE;"> de 432</span></p>
+        <p style="font-size:calc(19px * var(--tz)); color:#DBEAFE; line-height:1.45;">outorgas de menor risco sorteadas para 2027. <b style="color:#fff;">A sorteada é fiscalizada como as de maior risco.</b></p>
       </div>
-      <div class="destaque">
-        <p class="font-montserrat font-bold" style="font-size:calc(21px * var(--tz));">Depois do sorteio, o plano usa a lista, não a média</p>
-        <p style="font-size:calc(17px * var(--tz)); color:#DBEAFE; margin-top:6px !important; line-height:1.5;">Cada sorteada entra com as horas da sua modalidade; horas, equalização, calendário e deslocamento são recalculados sobre a <b>lista nominal</b>.</p>
-      </div>
-      {card("fa-sliders", "A taxa é parâmetro, não ajuste de cálculo", "Mudar o percentual exige nova vigência, aprovada pela Superintendência, com efeito medido antes da decisão.")}
-      <p class="legenda">Fonte: Nota Técnica nº 35/2026/GPF/SFC, seção 5 e Quadro 5. Pacote do sorteio juntado ao processo (SEI nº 3071066). beacon.nist.gov/beacon/2.0/chain/2/pulse/1986097</p>
+      {card("fa-clone", "Serve para qualquer cadastro", "Basta uma lista de regulados, uma regra de sorteio e um número público. O procedimento não depende dos sistemas da ANTAQ e pode ser refeito por qualquer pessoa.", "card-green")}
+      <p class="legenda">Fonte: Nota Técnica nº 35/2026/GPF/SFC, seção 5. Em 2027, todas as atividades do Grupo A estavam na faixa de risco médio, e a taxa aplicada foi de 7%.</p>
     </div>
   </div>""", extra_css=PASSO_CSS, base=1.0)
 

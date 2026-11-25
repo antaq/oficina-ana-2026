@@ -23,7 +23,7 @@ Para mudar a escala de um slide, ajuste o dicionário `BASES`. Os gráficos (ECh
 | Módulo | Slides |
 |---|---|
 | Capa | 01 |
-| 1 · Origem | 02 Por que mudar · 03 Teoria responsiva · 04 Trajetória 2017–2026 · 05 O que a prática ensinou |
+| 1 · Origem | 02 Teoria responsiva · 03 Por que mudar · 04 Trajetória 2017–2026 · 05 O que a prática ensinou |
 | 2 · IPR 2.0 | 06 Duas fases · 07 Da faixa à solução fiscal |
 | 3 · PAF 2027 | 08 Do ranking ao plano · 09 Sorteio auditável · 10 Capacidade · 11 Equalização · 12 Orçamento fechado de horas |
 | 4 · Lições | 13 Governança · 14 Desafios e alternativas |

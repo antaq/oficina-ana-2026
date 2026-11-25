@@ -8,7 +8,7 @@ Mesmo template HTML do deck desempenho-aquaviario-2025 (ApresentacaoSFC), que po
 segue apresentacao_sfc_diretoria, apresentacao_paf_diretoria e planejamento-inteligencia-2026.
 
   01 capa
-  Origem    · 02 por que mudar · 03 a teoria responsiva · 04 seis anos de fiscalização responsiva
+  Origem    · 02 a teoria responsiva · 03 por que mudar · 04 seis anos de fiscalização responsiva
   IPR 2.0   · 05 o que a prática ensinou · 06 risco inerente como piso · 07 da faixa à solução fiscal
   PAF 2027  · 08 o que entra no plano · 09 sorteio auditável · 10 o plano é viável com a equipe atual?
               11 equalização · 12 o plano inteiro em horas
@@ -157,7 +157,7 @@ MODULOS = {
 }
 
 SLIDES = []
-BASES = {2: 1.25, 3: 1.3, 4: 1.35, 5: 1.2, 6: 1.2, 7: 1.15, 8: 1.25, 9: 1.15, 10: 1.2, 11: 1.15, 12: 1.35, 13: 1.35, 14: 1.35}
+BASES = {2: 1.3, 3: 1.25, 4: 1.35, 5: 1.2, 6: 1.2, 7: 1.15, 8: 1.25, 9: 1.15, 10: 1.2, 11: 1.15, 12: 1.35, 13: 1.35, 14: 1.35}
 
 
 def slide(n, mod, title, kicker, titulo, body, extra_css="", base=1.0, head_extra="", js_extra=""):
@@ -202,7 +202,7 @@ GA, GB, GC = "var(--grA)", "var(--grB)", "var(--grC)"
 
 
 # ---------------------------------------------------------------------------
-# 02 — Por que mudar
+# 03 — Por que mudar
 # ---------------------------------------------------------------------------
 # Serviços regulados: apresentações de 2020 a 2022 (2014, 2016, 2019, 2022) e universo do
 # ciclo PAF 2027 (NT 35, 2.467 outorgas em 30/09/2026). Servidores na fiscalização: 204 em
@@ -223,7 +223,7 @@ G.desenha('g-reg', {{
       formatter: function (p) {{ return G.num(p.value); }} }} }}]
 }});
 """
-slide(2, 1, "Por que mudar", "O ponto de partida · 2017 a 2019", "Por que mudar", f"""
+slide(3, 1, "Por que mudar", "O ponto de partida · 2017 a 2019", "Por que mudar", f"""
   <div class="flex-1 px-16 pb-4 grid grid-cols-12 gap-10 items-center min-h-0">
     <div class="col-span-5 flex flex-col gap-4">
       <p class="sec">O modelo tradicional · PPF 2017–2019</p>
@@ -258,7 +258,7 @@ slide(2, 1, "Por que mudar", "O ponto de partida · 2017 a 2019", "Por que mudar
 
 
 # ---------------------------------------------------------------------------
-# 03 — A teoria responsiva
+# 02 — A teoria responsiva
 # ---------------------------------------------------------------------------
 PIR_CSS = """
 .pir { display:flex; flex-direction:column; align-items:center; gap:6px; }
@@ -279,7 +279,7 @@ NIVEIS = [  # (largura %, cor, ação da fiscalização, comportamento do regula
 pir = "\n".join(
     f'<div class="pir-n" style="width:{w}%; background:{c};"><div><p class="pir-a">{a}</p><p class="pir-c">{b}</p></div></div>'
     for w, c, a, b in NIVEIS)
-slide(3, 1, "A teoria responsiva", "Ayres e Braithwaite, 1992 · OCDE", "A teoria responsiva", f"""
+slide(2, 1, "A teoria responsiva", "Ayres e Braithwaite, 1992 · OCDE", "A teoria responsiva", f"""
   <div class="flex-1 px-16 pb-4 grid grid-cols-12 gap-10 items-center min-h-0">
     <div class="col-span-7 flex flex-col gap-4">
       <div class="flex items-end justify-between"><p class="sec">Pirâmide da fiscalização</p><p class="legenda">ação da fiscalização · <i>comportamento do regulado</i></p></div>

@@ -10,7 +10,7 @@ segue apresentacao_sfc_diretoria, apresentacao_paf_diretoria e planejamento-inte
   01 capa
   Origem    · 02 por que mudar · 03 a teoria responsiva · 04 seis anos de fiscalização responsiva
   IPR 2.0   · 05 o que a prática ensinou · 06 risco inerente como piso · 07 da faixa à solução fiscal
-  PAF 2027  · 08 o que entra no plano · 09 sorteio auditável · 10 o plano cabe em quem o executa?
+  PAF 2027  · 08 o que entra no plano · 09 sorteio auditável · 10 o plano é viável com a equipe atual?
               11 equalização · 12 o plano inteiro em horas
   Lições    · 13 governança · 14 desafios e alternativas
   15 encerramento
@@ -240,7 +240,7 @@ slide(2, 1, "Por que mudar", "O ponto de partida · 2017 a 2019", "Por que mudar
       </div>
       <div class="destaque flex items-center gap-6">
         <p class="big" style="font-size:calc(64px * var(--tz)); color:#FFD700;">+94%</p>
-        <p style="font-size:calc(19px * var(--tz)); color:#DBEAFE; line-height:1.45;">de regulados entre 2014 e 2026, com <b>menos</b> gente para fiscalizar. Repetir a mesma ação para todos deixou de caber.</p>
+        <p style="font-size:calc(19px * var(--tz)); color:#DBEAFE; line-height:1.45;">de regulados entre 2014 e 2026, com <b>menos</b> gente para fiscalizar. Repetir a mesma ação para todos deixou de ser viável.</p>
       </div>
       <p class="legenda">Fontes: apresentações da SFC de 2020 a 2022 (séries de 2014 a 2022); 2026: universo do ciclo PAF 2027, 2.467 outorgas em 30/09/2026 (Nota Técnica nº 35/2026/GPF/SFC).</p>
     </div>
@@ -584,7 +584,7 @@ slide(8, 3, "O que entra no plano", "Composição do grupo de risco · PAF 2027"
           <p class="gt">Grupo C <span style="font-weight:600; font-size:.8em; opacity:.85;">· maior risco</span></p><p class="gn">572</p><p class="gd"><b>Entra inteiro.</b> Fiscalizar o maior risco é obrigação do modelo, não escolha de escopo. É o piso do plano.</p>
         </div>
         <div class="grp" style="background:linear-gradient(160deg,#1E3A8A,#0066CC);">
-          <p class="gt">Grupo B <span style="font-weight:600; font-size:.8em; opacity:.85;">· intermediário</span></p><p class="gn">89</p><p class="gd"><b>Entra o que cabe</b>, de 1.287, na ordem estrita do ranking. Para na primeira outorga que não cabe; não se pula ninguém.</p>
+          <p class="gt">Grupo B <span style="font-weight:600; font-size:.8em; opacity:.85;">· intermediário</span></p><p class="gn">89</p><p class="gd"><b>Entra até esgotar as horas</b>, de 1.287, na ordem estrita do ranking. Para na primeira outorga que ultrapassa o saldo; não se pula ninguém.</p>
         </div>
         <div class="grp" style="background:linear-gradient(160deg,#14532D,#15803D);">
           <p class="gt">Grupo A <span style="font-weight:600; font-size:.8em; opacity:.85;">· menor risco</span></p><p class="gn">35</p><p class="gd"><b>Entra por sorteio</b>, de 432. Sorteadas são fiscalizadas como as do Grupo C.</p>
@@ -641,7 +641,7 @@ slide(9, 3, "Sorteio auditável do Grupo A", "Amostragem aleatória · executada
 
 
 # ---------------------------------------------------------------------------
-# 10 — O plano cabe em quem o executa?
+# 10 — O plano é viável com a equipe atual?
 # ---------------------------------------------------------------------------
 HORAS = [("Porto organizado", 120), ("Terminal de uso privado", 84), ("Demais outorgas", 72), ("Travessia e registro", 58)]
 ANTES = [("Santana (AP)", 1281, 5204, 406.3), ("Belém (PA)", 8070, 11384, 141.1),
@@ -662,7 +662,7 @@ table.tbl tr.tot td.oc { color:#15803D; }
 """
 horas_html = "".join(f'<div class="hr"><p class="cd" style="margin:0;">{m}</p><p class="num-r" style="font-size:calc(24px * var(--tz));">{h} h</p></div>' for m, h in HORAS)
 linhas = "".join(f'<tr><td>{u}</td><td>{br(c)}</td><td>{br(d)}</td><td class="oc">{br(o, 1)}%</td></tr>' for u, c, d, o in ANTES)
-slide(10, 3, "O plano cabe em quem o executa?", "Força de trabalho · planos de trabalho do PGD", "O plano cabe em quem o executa?", f"""
+slide(10, 3, "O plano é viável com a equipe atual?", "Força de trabalho · planos de trabalho do PGD", "O plano é viável com a equipe atual?", f"""
   <div class="flex-1 px-16 pb-4 grid grid-cols-12 gap-10 items-center min-h-0">
     <div class="col-span-5 flex flex-col gap-4">
       <p class="sec">A régua: horas, não número de outorgas</p>
@@ -688,7 +688,7 @@ slide(10, 3, "O plano cabe em quem o executa?", "Força de trabalho · planos de
         <div class="stat-card" style="background:linear-gradient(135deg,#14532D,#15803D);"><p class="stat-num">85%</p><p class="stat-lbl" style="color:#DCFCE7;">de ocupação<br/>no agregado</p></div>
       </div>
       <div class="destaque">
-        <p class="font-montserrat font-bold" style="font-size:calc(26px * var(--tz));">Cabe na Agência, <span style="color:#FFD700;">mas não cabe onde a carga está.</span></p>
+        <p class="font-montserrat font-bold" style="font-size:calc(26px * var(--tz));">No total há folga, <span style="color:#FFD700;">mas não onde a carga está.</span></p>
       </div>
       <div class="painel" style="padding:14px 22px 12px;">
         <p class="ct" style="margin-bottom:8px;">Unidades acima do limite, antes de redistribuir</p>
@@ -939,7 +939,7 @@ CAPA = ESCURO_HEAD.format(title=f"Abertura — {TITULO_DECK}", base="1.15", css=
       <p class="font-montserrat font-black text-white leading-none" style="font-size:calc(76px * var(--tz));">Fiscalização</p>
       <p class="font-montserrat font-black gold leading-none mt-2" style="font-size:calc(92px * var(--tz));">Responsiva</p>
       <div class="bg-gold mt-6 mb-8" style="width:100px; height:4px;"></div>
-      <p class="text-2xl text-gray-300 font-light leading-relaxed max-w-3xl">A experiência da ANTAQ: do ranking de risco<br/>a um plano que cabe na equipe</p>
+      <p class="text-2xl text-gray-300 font-light leading-relaxed max-w-3xl">A experiência da ANTAQ: do ranking de risco<br/>a um plano na medida da equipe</p>
     </div>
     <div class="flex gap-10 mt-12">
 {chip("fa-water", "Evento", "ANA · Sede, Brasília (DF)")}

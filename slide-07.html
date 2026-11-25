@@ -104,7 +104,7 @@ body { margin:0; padding:0; overflow:hidden; font-family:'Open Sans',sans-serif;
       <div class="painel">
         <p class="ct">A pirâmide voltou a ter forma</p>
         <p class="cd" style="margin:0;">Distribuição das outorgas por faixa, antes e depois do IPR 2.0</p>
-        <div id="g-dist" class="graf" style="height:420px;"></div>
+        <div id="g-dist" class="graf" style="height:450px;"></div>
       </div>
       <div class="destaque flex items-center gap-6">
         <p class="big" style="font-size:calc(58px * var(--tz)); color:#FFD700;">2.427</p>
@@ -119,27 +119,28 @@ body { margin:0; padding:0; overflow:hidden; font-family:'Open Sans',sans-serif;
     <p class="text-gray-300 text-sm font-mono">7 / 15</p>
   </div>
 </div>
-<script src="zoom.js"></script>
-<script src="anim.js"></script>
+<script src="zoom.js?v=eb6743fb"></script>
+<script src="anim.js?v=4f68014d"></script>
 <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
-<script src="graficos.js"></script>
+<script src="graficos.js?v=d8761e66"></script>
 <script>
 (function(){ var C = G.C;
 
-var fx = ["A1", "A2", "B1", "B2", "C1", "C2", "C3", "C4"], antes = [83.7, 5.2, 8.8, 1.5, 0.7, 0.1, 0.0, 0.0], depois = [11.5, 6.3, 37.4, 20.8, 10.9, 7.8, 3.7, 1.5];
+var fx = ["C4", "C3", "C2", "C1", "B2", "B1", "A2", "A1"], antes = [0.0, 0.0, 0.1, 0.7, 1.5, 8.8, 5.2, 83.7], depois = [1.5, 3.7, 7.8, 10.9, 20.8, 37.4, 6.3, 11.5];
 G.desenha('g-dist', {
-  grid: { left: 20, right: 10, top: 50, bottom: 30 },
+  grid: { left: 62, right: 60, top: 44, bottom: 4 },
   legend: G.legenda({ data: ['IPR anterior · abr/2026', 'IPR 2.0 · ciclo 2027'] }),
   tooltip: G.dica({ trigger: 'axis', axisPointer: { type: 'shadow', shadowStyle: { color: 'rgba(148,163,184,.14)' } },
     formatter: function (ps) { return '<b>' + ps[0].name + '</b><br/>' + ps.map(function (p) { return p.marker + p.seriesName + ': <b>' + G.pct(p.value) + '</b>'; }).join('<br/>'); } }),
-  xAxis: G.eixoCat(fx),
-  yAxis: G.eixoVal({ show: false, max: 92 }),
+  xAxis: G.eixoVal({ show: false, max: 92 }),
+  yAxis: G.eixoCat(fx, { inverse: true, axisLine: { show: false },
+    axisLabel: { color: C.marca, fontFamily: G.FT, fontSize: 18, fontWeight: 800, margin: 12 } }),
   series: [
-    { name: 'IPR anterior · abr/2026', type: 'bar', data: antes, barGap: '10%', barWidth: '36%', itemStyle: { color: C.antes, borderRadius: [4, 4, 0, 0] },
-       label: { show: true, position: 'top', color: C.apagado, fontFamily: G.FT, fontWeight: 700, fontSize: 15,
-         formatter: function (p) { return p.value >= 5 ? G.pct(p.value, 0) : ''; } } },
-    { name: 'IPR 2.0 · ciclo 2027', type: 'bar', data: depois, barWidth: '36%', itemStyle: { color: C.marca, borderRadius: [4, 4, 0, 0] },
-       label: { show: true, position: 'top', color: C.tinta, fontFamily: G.FT, fontWeight: 700, fontSize: 15,
+    { name: 'IPR anterior · abr/2026', type: 'bar', data: antes, barGap: '12%', barWidth: '38%', itemStyle: { color: C.antes, borderRadius: [0, 4, 4, 0] },
+       label: { show: true, position: 'right', distance: 6, color: C.apagado, fontFamily: G.FT, fontWeight: 700, fontSize: 15,
+         formatter: function (p) { return p.value >= 1 ? G.pct(p.value, 0) : (p.value > 0 ? '<1%' : '0%'); } } },
+    { name: 'IPR 2.0 · ciclo 2027', type: 'bar', data: depois, barWidth: '38%', itemStyle: { color: C.marca, borderRadius: [0, 4, 4, 0] },
+       label: { show: true, position: 'right', distance: 6, color: C.tinta, fontFamily: G.FT, fontWeight: 700, fontSize: 15,
          formatter: function (p) { return G.pct(p.value, 0); } } }
   ]
 });

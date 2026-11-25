@@ -33,6 +33,7 @@ Os números do plano aparecem como proposta.
 Todo o deck sai deste script, inclusive capa e encerramento. Para regerar: python3 build_slides.py
 """
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -40,6 +41,15 @@ DST = Path(__file__).resolve().parent
 TOTAL = 15
 RODAPE = "Fiscalização Responsiva na ANTAQ · 2ª Oficina de Integração · ANA, 25/11/2026 · SFC — ANTAQ"
 TITULO_DECK = "Fiscalização Responsiva na ANTAQ"
+
+def versiona(html):
+    """Acrescenta ?v=<hash> aos scripts locais. O hash muda quando o arquivo muda, e o
+    navegador (o Pages guarda cópia por 10 min) passa a buscar a versão nova."""
+    for arq in ("zoom.js", "anim.js", "graficos.js"):
+        h = hashlib.sha1((DST / arq).read_bytes()).hexdigest()[:8]
+        html = html.replace(f'<script src="{arq}"></script>', f'<script src="{arq}?v={h}"></script>')
+    return html
+
 
 ECHARTS = '<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>'
 
@@ -504,22 +514,24 @@ for i, (f, sol, v, g) in enumerate(FAIXAS):
     w = 46 + i * 54 / 7
     blocos.append(f'<div class="pf"><div class="bloco" style="width:{w:.1f}%; background:{TONS[f]};"><p class="fx">{f}</p><p class="sol">{sol}</p><p class="qt">{br(v)}</p></div></div>')
 pir7 = "\n".join(blocos)
-ordem = ["A1", "A2", "B1", "B2", "C1", "C2", "C3", "C4"]
+# Barras horizontais, na mesma ordem da pirâmide ao lado: C4 em cima, A1 embaixo.
+ordem = ["C4", "C3", "C2", "C1", "B2", "B1", "A2", "A1"]
 js7 = f"""
 var fx = {json.dumps(ordem)}, antes = {[ANTIGO[f] for f in ordem]}, depois = {[NOVO[f] for f in ordem]};
 G.desenha('g-dist', {{
-  grid: {{ left: 20, right: 10, top: 50, bottom: 30 }},
+  grid: {{ left: 62, right: 60, top: 44, bottom: 4 }},
   legend: G.legenda({{ data: ['IPR anterior · abr/2026', 'IPR 2.0 · ciclo 2027'] }}),
   tooltip: G.dica({{ trigger: 'axis', axisPointer: {{ type: 'shadow', shadowStyle: {{ color: 'rgba(148,163,184,.14)' }} }},
     formatter: function (ps) {{ return '<b>' + ps[0].name + '</b><br/>' + ps.map(function (p) {{ return p.marker + p.seriesName + ': <b>' + G.pct(p.value) + '</b>'; }}).join('<br/>'); }} }}),
-  xAxis: G.eixoCat(fx),
-  yAxis: G.eixoVal({{ show: false, max: 92 }}),
+  xAxis: G.eixoVal({{ show: false, max: 92 }}),
+  yAxis: G.eixoCat(fx, {{ inverse: true, axisLine: {{ show: false }},
+    axisLabel: {{ color: C.marca, fontFamily: G.FT, fontSize: 18, fontWeight: 800, margin: 12 }} }}),
   series: [
-    {{ name: 'IPR anterior · abr/2026', type: 'bar', data: antes, barGap: '10%', barWidth: '36%', itemStyle: {{ color: C.antes, borderRadius: [4, 4, 0, 0] }},
-       label: {{ show: true, position: 'top', color: C.apagado, fontFamily: G.FT, fontWeight: 700, fontSize: 15,
-         formatter: function (p) {{ return p.value >= 5 ? G.pct(p.value, 0) : ''; }} }} }},
-    {{ name: 'IPR 2.0 · ciclo 2027', type: 'bar', data: depois, barWidth: '36%', itemStyle: {{ color: C.marca, borderRadius: [4, 4, 0, 0] }},
-       label: {{ show: true, position: 'top', color: C.tinta, fontFamily: G.FT, fontWeight: 700, fontSize: 15,
+    {{ name: 'IPR anterior · abr/2026', type: 'bar', data: antes, barGap: '12%', barWidth: '38%', itemStyle: {{ color: C.antes, borderRadius: [0, 4, 4, 0] }},
+       label: {{ show: true, position: 'right', distance: 6, color: C.apagado, fontFamily: G.FT, fontWeight: 700, fontSize: 15,
+         formatter: function (p) {{ return p.value >= 1 ? G.pct(p.value, 0) : (p.value > 0 ? '<1%' : '0%'); }} }} }},
+    {{ name: 'IPR 2.0 · ciclo 2027', type: 'bar', data: depois, barWidth: '38%', itemStyle: {{ color: C.marca, borderRadius: [0, 4, 4, 0] }},
+       label: {{ show: true, position: 'right', distance: 6, color: C.tinta, fontFamily: G.FT, fontWeight: 700, fontSize: 15,
          formatter: function (p) {{ return G.pct(p.value, 0); }} }} }}
   ]
 }});
@@ -536,7 +548,7 @@ slide(7, 2, "Da faixa à solução fiscal", "Pirâmide ANTAQ · ciclo PAF 2027",
       <div class="painel">
         <p class="ct">A pirâmide voltou a ter forma</p>
         <p class="cd" style="margin:0;">Distribuição das outorgas por faixa, antes e depois do IPR 2.0</p>
-        <div id="g-dist" class="graf" style="height:420px;"></div>
+        <div id="g-dist" class="graf" style="height:450px;"></div>
       </div>
       <div class="destaque flex items-center gap-6">
         <p class="big" style="font-size:calc(58px * var(--tz)); color:#FFD700;">{br(TOT_ATIVAS)}</p>
@@ -614,8 +626,8 @@ slide(9, 3, "Sorteio auditável do Grupo A", "Amostragem aleatória · executada
     <div class="col-span-6 flex flex-col gap-4">
       {card("fa-eye-slash", "Por que sortear o baixo risco", "Deixar o Grupo A fora do plano criaria uma <b>zona de ausência previsível</b>: o próprio regulado saberia que não será visitado. O sorteio mantém a chance, sem que ninguém escolha quem.", "card-gold")}
       <p class="sec" style="margin-top:4px;">Em duas fases</p>
-      <div class="card passo"><div class="nb">1</div><div><p class="ct">Compromisso · 11h46</p><p class="cd">A Agência registra a lista de elegíveis, as taxas e a regra, e grava a impressão digital (<span class="hash">SHA-256</span>) desse conjunto <b>antes</b> de conhecer o número aleatório.</p></div></div>
-      <div class="card passo"><div class="nb">2</div><div><p class="ct">Execução · 11h52</p><p class="cd">A semente é o número publicado pelo <b>NIST Randomness Beacon</b> (pulso 1986097), um serviço público que divulga a cada minuto um número aleatório certificado. Ninguém o conhecia antes; todos podem consultá-lo depois.</p></div></div>
+      <div class="card passo"><div class="nb">1</div><div><p class="ct">Compromisso</p><p class="cd">A Agência registra a lista de elegíveis, as taxas e a regra, e grava a impressão digital (<span class="hash">SHA-256</span>) desse conjunto <b>antes</b> de conhecer o número aleatório.</p></div></div>
+      <div class="card passo"><div class="nb">2</div><div><p class="ct">Execução</p><p class="cd">A semente é o número publicado pelo <b>NIST Randomness Beacon</b> (pulso 1986097), um serviço público que divulga a cada minuto um número aleatório certificado. Ninguém o conhecia antes; todos podem consultá-lo depois.</p></div></div>
       <div class="card passo card-green"><div class="nb" style="background:#15803D; color:#fff;"><i class="fas fa-check"></i></div><div><p class="ct">Conferência</p><p class="cd">Ata e programa estão no processo. O programa roda em qualquer computador com Python, sem acesso aos sistemas da Agência, e <b>falha se qualquer outorga for incluída, retirada ou trocada</b>.</p></div></div>
     </div>
     <div class="col-span-6 flex flex-col gap-4">
@@ -1026,10 +1038,10 @@ def render(s):
 
 
 assert sorted(s["n"] for s in SLIDES) == list(range(2, TOTAL))
-(DST / "slide-01.html").write_text(CAPA, encoding="utf-8")
+(DST / "slide-01.html").write_text(versiona(CAPA), encoding="utf-8")
 print("slide-01.html (capa)")
 for s in sorted(SLIDES, key=lambda s: s["n"]):
-    (DST / f"slide-{s['n']:02d}.html").write_text(render(s), encoding="utf-8")
+    (DST / f"slide-{s['n']:02d}.html").write_text(versiona(render(s)), encoding="utf-8")
     print(f"slide-{s['n']:02d}.html")
-(DST / f"slide-{TOTAL:02d}.html").write_text(encerramento(), encoding="utf-8")
+(DST / f"slide-{TOTAL:02d}.html").write_text(versiona(encerramento()), encoding="utf-8")
 print(f"slide-{TOTAL:02d}.html (encerramento)")

@@ -89,8 +89,8 @@ body { margin:0; padding:0; overflow:hidden; font-family:'Open Sans',sans-serif;
     <div class="col-span-6 flex flex-col gap-4">
       <div class="card card-gold"><div class="ico"><i class="fas fa-eye-slash"></i></div><div><p class="ct">Por que sortear o baixo risco</p><p class="cd">Deixar o Grupo A fora do plano criaria uma <b>zona de ausência previsível</b>: o próprio regulado saberia que não será visitado. O sorteio mantém a chance, sem que ninguém escolha quem.</p></div></div>
       <p class="sec" style="margin-top:4px;">Em duas fases</p>
-      <div class="card passo"><div class="nb">1</div><div><p class="ct">Compromisso · 11h46</p><p class="cd">A Agência registra a lista de elegíveis, as taxas e a regra, e grava a impressão digital (<span class="hash">SHA-256</span>) desse conjunto <b>antes</b> de conhecer o número aleatório.</p></div></div>
-      <div class="card passo"><div class="nb">2</div><div><p class="ct">Execução · 11h52</p><p class="cd">A semente é o número publicado pelo <b>NIST Randomness Beacon</b> (pulso 1986097), um serviço público que divulga a cada minuto um número aleatório certificado. Ninguém o conhecia antes; todos podem consultá-lo depois.</p></div></div>
+      <div class="card passo"><div class="nb">1</div><div><p class="ct">Compromisso</p><p class="cd">A Agência registra a lista de elegíveis, as taxas e a regra, e grava a impressão digital (<span class="hash">SHA-256</span>) desse conjunto <b>antes</b> de conhecer o número aleatório.</p></div></div>
+      <div class="card passo"><div class="nb">2</div><div><p class="ct">Execução</p><p class="cd">A semente é o número publicado pelo <b>NIST Randomness Beacon</b> (pulso 1986097), um serviço público que divulga a cada minuto um número aleatório certificado. Ninguém o conhecia antes; todos podem consultá-lo depois.</p></div></div>
       <div class="card passo card-green"><div class="nb" style="background:#15803D; color:#fff;"><i class="fas fa-check"></i></div><div><p class="ct">Conferência</p><p class="cd">Ata e programa estão no processo. O programa roda em qualquer computador com Python, sem acesso aos sistemas da Agência, e <b>falha se qualquer outorga for incluída, retirada ou trocada</b>.</p></div></div>
     </div>
     <div class="col-span-6 flex flex-col gap-4">
@@ -119,8 +119,8 @@ body { margin:0; padding:0; overflow:hidden; font-family:'Open Sans',sans-serif;
     <p class="text-gray-300 text-sm font-mono">9 / 15</p>
   </div>
 </div>
-<script src="zoom.js"></script>
-<script src="anim.js"></script>
+<script src="zoom.js?v=eb6743fb"></script>
+<script src="anim.js?v=4f68014d"></script>
 
 <script>document.addEventListener("keydown",function(e){if(["ArrowRight","ArrowLeft","PageDown","PageUp","Home","End"," ","f","F"].indexOf(e.key)!==-1){e.preventDefault();window.parent.postMessage({type:"slide-nav",key:e.key},"*");}});</script>
 </body>

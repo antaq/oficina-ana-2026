@@ -211,6 +211,8 @@ GA, GB, GC = "var(--grA)", "var(--grB)", "var(--grC)"
 # (apresentações de 2020 e 2021).
 REG = [("2014", 1272, 131), ("2016", 1540, 171), ("2019", 2080, 169), ("2022", 2124, 151), ("2026", 2467, 150)]
 POR_FISCAL = {a: r / f for a, r, f in REG}
+FISC_PRE_CNU = 132   # fiscais em 30/04/2026, último mês antes da posse dos aprovados no CNU
+QUEDA_PRE_CNU = round(100 * (FISC_PRE_CNU / 171 - 1))   # contra 31/12/2016, pico da série anual
 js2 = f"""
 var anos = {json.dumps([a for a, _, _ in REG])}, v = {[r for _, r, _ in REG]}, f = {[x for _, _, x in REG]};
 var LARANJA = '#D97706';
@@ -231,7 +233,7 @@ G.desenha('g-reg', {{
       symbol: 'circle', symbolSize: 13, lineStyle: {{ color: LARANJA, width: 4 }},
       itemStyle: {{ color: LARANJA, borderColor: '#fff', borderWidth: 3 }},
       label: {{ show: true, position: 'top', distance: 10, color: '#92400E', fontFamily: G.FT, fontWeight: 800, fontSize: 18,
-        backgroundColor: '#fff', borderRadius: 6, padding: [3, 8], formatter: function (p) {{ return G.num(p.value); }} }} }}
+        backgroundColor: '#fff', borderRadius: 6, padding: [3, 8], formatter: function (p) {{ return p.dataIndex === f.length - 1 ? G.num(p.value) + ' com o CNU' : G.num(p.value); }} }} }}
   ]
 }});
 """
@@ -249,7 +251,7 @@ slide(3, 1, "Por que mudar", "O ponto de partida · 2017 a 2019", "Por que mudar
         <p class="cd" style="margin:0;">mais as empresas autuadas e as novas outorgas. Todo regulado recebia a mesma ação, com lógica de <b>comando e controle</b>, herdada dos anos 1990.</p>
       </div>
       <div class="grid grid-cols-2 gap-4">
-        {stat("−12%", "fiscais na SFC<br/>171 em 2016 · 150 em 2026")}
+        {stat(f"−{-QUEDA_PRE_CNU}%", f"fiscais na SFC até o CNU<br/>171 em 2016 · {FISC_PRE_CNU} em abr/2026")}
         {stat("+31%", "fiscalizações por ano<br/>1.120 em 2014 · 1.465 em 2019")}
       </div>
       {card("fa-crosshairs", "A pergunta que faltava responder", "Quem, quando, onde e como fiscalizar, com a equipe que se tem, para chegar à <b>conformidade</b> e não apenas à autuação.", "card-gold")}
@@ -262,9 +264,9 @@ slide(3, 1, "Por que mudar", "O ponto de partida · 2017 a 2019", "Por que mudar
       </div>
       <div class="destaque flex items-center gap-6">
         <p class="big" style="font-size:calc(64px * var(--tz)); color:#FFD700;">{br(round(POR_FISCAL['2026']))}</p>
-        <p style="font-size:calc(19px * var(--tz)); color:#DBEAFE; line-height:1.45;">regulados por fiscal em 2026, contra <b>{br(round(POR_FISCAL['2014']))}</b> em 2014. O universo cresceu 94% e a equipe não acompanhou: repetir a mesma ação para todos deixou de ser viável.</p>
+        <p style="font-size:calc(19px * var(--tz)); color:#DBEAFE; line-height:1.45;">regulados por fiscal em 2026, contra <b>{br(round(POR_FISCAL['2014']))}</b> em 2014, já com o reforço do CNU. O universo cresceu 94% e a equipe não acompanhou: repetir a mesma ação para todos deixou de ser viável.</p>
       </div>
-      <p class="legenda">Fontes: serviços regulados, apresentações da SFC de 2020 a 2022 e, em 2026, universo do ciclo PAF 2027 em 30/09/2026 (Nota Técnica nº 35/2026/GPF/SFC). Fiscais em exercício na SFC em 31/12 de cada ano (2026: 30/09), série de efetivo da SFC/ANTAQ reconstruída de atos de pessoal e do PGD, via conector MCP independente.</p>
+      <p class="legenda">Fontes: serviços regulados, apresentações da SFC de 2020 a 2022 e, em 2026, universo do ciclo PAF 2027 em 30/09/2026 (Nota Técnica nº 35/2026/GPF/SFC). Fiscais em exercício na SFC em 31/12 de cada ano (2026: 30/09), série de efetivo da SFC/ANTAQ reconstruída de atos de pessoal e do PGD, via conector MCP independente. A alta de 132 (abr/2026) para 150 (set/2026) é o reforço do Concurso Nacional Unificado.</p>
     </div>
   </div>""", js_extra=graficos(js2), base=1.05)
 

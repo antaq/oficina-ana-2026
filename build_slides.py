@@ -205,22 +205,34 @@ GA, GB, GC = "var(--grA)", "var(--grB)", "var(--grC)"
 # 03 — Por que mudar
 # ---------------------------------------------------------------------------
 # Serviços regulados: apresentações de 2020 a 2022 (2014, 2016, 2019, 2022) e universo do
-# ciclo PAF 2027 (NT 35, 2.467 outorgas em 30/09/2026). Servidores na fiscalização: 204 em
-# 2016 e 164 em 2022 (apresentação ao Prêmio FGV, 2022). Fiscalizações: 1.120 em 2014 e
-# 1.465 em 2019 (apresentações de 2020 e 2021).
-REG = [("2014", 1272), ("2016", 1540), ("2019", 2080), ("2022", 2124), ("2026", 2467)]
+# ciclo PAF 2027 (NT 35, 2.467 outorgas em 30/09/2026). Fiscais em exercício na SFC: série de
+# efetivo da SFC (efetivo_sfc, só agregados), retrato de 31/12 de cada ano e, em 2026, de
+# 30/09, a mesma data do universo. Fiscalizações: 1.120 em 2014 e 1.465 em 2019
+# (apresentações de 2020 e 2021).
+REG = [("2014", 1272, 131), ("2016", 1540, 171), ("2019", 2080, 169), ("2022", 2124, 151), ("2026", 2467, 150)]
+POR_FISCAL = {a: r / f for a, r, f in REG}
 js2 = f"""
-var anos = {json.dumps([a for a, _ in REG])}, v = {[x for _, x in REG]};
+var anos = {json.dumps([a for a, _, _ in REG])}, v = {[r for _, r, _ in REG]}, f = {[x for _, _, x in REG]};
+var LARANJA = '#D97706';
 G.desenha('g-reg', {{
-  grid: {{ left: 20, right: 20, top: 40, bottom: 34 }},
+  grid: {{ left: 20, right: 20, top: 56, bottom: 34 }},
+  legend: G.legenda({{ data: [{{ name: 'Serviços regulados', itemStyle: {{ color: C.porto }} }}, {{ name: 'Fiscais em exercício na SFC', icon: 'circle' }}] }}),
   tooltip: G.dica({{ trigger: 'axis', axisPointer: {{ type: 'shadow', shadowStyle: {{ color: 'rgba(148,163,184,.14)' }} }},
-    formatter: function (ps) {{ return '<b>' + ps[0].name + '</b><br/>' + G.num(ps[0].value) + ' serviços regulados'; }} }}),
+    formatter: function (ps) {{ var i = ps[0].dataIndex;
+      return '<b>' + ps[0].name + '</b><br/>' + G.num(v[i]) + ' serviços regulados<br/>' + G.num(f[i]) + ' fiscais na SFC<br/>' + G.num(v[i] / f[i], 1) + ' regulados por fiscal'; }} }}),
   xAxis: G.eixoCat(anos),
-  yAxis: G.eixoVal({{ show: false, max: 2700 }}),
-  series: [{{ type: 'bar', data: v, barWidth: '52%',
-    itemStyle: {{ color: function (p) {{ return p.dataIndex === v.length - 1 ? C.marca : C.porto; }}, borderRadius: [6, 6, 0, 0] }},
-    label: {{ show: true, position: 'top', distance: 8, color: C.tinta, fontFamily: G.FT, fontWeight: 700, fontSize: 20,
-      formatter: function (p) {{ return G.num(p.value); }} }} }}]
+  yAxis: [G.eixoVal({{ show: false, max: 2700 }}), G.eixoVal({{ show: false, min: 0, max: 400 }})],
+  series: [
+    {{ name: 'Serviços regulados', type: 'bar', data: v, barWidth: '52%',
+      itemStyle: {{ color: function (p) {{ return p.dataIndex === v.length - 1 ? C.marca : C.porto; }}, borderRadius: [6, 6, 0, 0] }},
+      label: {{ show: true, position: 'top', distance: 8, color: C.tinta, fontFamily: G.FT, fontWeight: 700, fontSize: 20,
+        formatter: function (p) {{ return G.num(p.value); }} }} }},
+    {{ name: 'Fiscais em exercício na SFC', type: 'line', yAxisIndex: 1, data: f, z: 5,
+      symbol: 'circle', symbolSize: 13, lineStyle: {{ color: LARANJA, width: 4 }},
+      itemStyle: {{ color: LARANJA, borderColor: '#fff', borderWidth: 3 }},
+      label: {{ show: true, position: 'top', distance: 10, color: '#92400E', fontFamily: G.FT, fontWeight: 800, fontSize: 18,
+        backgroundColor: '#fff', borderRadius: 6, padding: [3, 8], formatter: function (p) {{ return G.num(p.value); }} }} }}
+  ]
 }});
 """
 slide(3, 1, "Por que mudar", "O ponto de partida · 2017 a 2019", "Por que mudar", f"""
@@ -237,7 +249,7 @@ slide(3, 1, "Por que mudar", "O ponto de partida · 2017 a 2019", "Por que mudar
         <p class="cd" style="margin:0;">mais as empresas autuadas e as novas outorgas. Todo regulado recebia a mesma ação, com lógica de <b>comando e controle</b>, herdada dos anos 1990.</p>
       </div>
       <div class="grid grid-cols-2 gap-4">
-        {stat("−20%", "servidores na fiscalização<br/>204 em 2016 · 164 em 2022")}
+        {stat("−12%", "fiscais na SFC<br/>171 em 2016 · 150 em 2026")}
         {stat("+31%", "fiscalizações por ano<br/>1.120 em 2014 · 1.465 em 2019")}
       </div>
       {card("fa-crosshairs", "A pergunta que faltava responder", "Quem, quando, onde e como fiscalizar, com a equipe que se tem, para chegar à <b>conformidade</b> e não apenas à autuação.", "card-gold")}
@@ -245,14 +257,14 @@ slide(3, 1, "Por que mudar", "O ponto de partida · 2017 a 2019", "Por que mudar
     <div class="col-span-7 flex flex-col gap-4">
       <div class="painel">
         <p class="ct">Serviços regulados pela ANTAQ</p>
-        <p class="cd" style="margin:0;">Portos, terminais, navegação marítima e navegação interior: quase o dobro em doze anos</p>
+        <p class="cd" style="margin:0;">Portos, terminais e navegação quase dobraram em doze anos; o número de fiscais, não</p>
         <div id="g-reg" class="graf" style="height:470px;"></div>
       </div>
       <div class="destaque flex items-center gap-6">
-        <p class="big" style="font-size:calc(64px * var(--tz)); color:#FFD700;">+94%</p>
-        <p style="font-size:calc(19px * var(--tz)); color:#DBEAFE; line-height:1.45;">de regulados entre 2014 e 2026, com <b>menos</b> gente para fiscalizar. Repetir a mesma ação para todos deixou de ser viável.</p>
+        <p class="big" style="font-size:calc(64px * var(--tz)); color:#FFD700;">{br(round(POR_FISCAL['2026']))}</p>
+        <p style="font-size:calc(19px * var(--tz)); color:#DBEAFE; line-height:1.45;">regulados por fiscal em 2026, contra <b>{br(round(POR_FISCAL['2014']))}</b> em 2014. O universo cresceu 94% e a equipe não acompanhou: repetir a mesma ação para todos deixou de ser viável.</p>
       </div>
-      <p class="legenda">Fontes: apresentações da SFC de 2020 a 2022 (séries de 2014 a 2022); 2026: universo do ciclo PAF 2027, 2.467 outorgas em 30/09/2026 (Nota Técnica nº 35/2026/GPF/SFC).</p>
+      <p class="legenda">Fontes: serviços regulados, apresentações da SFC de 2020 a 2022 e, em 2026, universo do ciclo PAF 2027 em 30/09/2026 (Nota Técnica nº 35/2026/GPF/SFC). Fiscais em exercício na SFC em 31/12 de cada ano (2026: 30/09), série de efetivo da SFC/ANTAQ reconstruída de atos de pessoal e do PGD, via conector MCP independente.</p>
     </div>
   </div>""", js_extra=graficos(js2), base=1.05)
 

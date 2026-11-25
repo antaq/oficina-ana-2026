@@ -1,0 +1,5 @@
+exportar/node_modules/
+exportar/tmp/
+exportar/package-lock.json
+_*.html
+.claude/

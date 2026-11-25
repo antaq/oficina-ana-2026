@@ -18,6 +18,17 @@ Edite `build_slides.py` e rode `python3 build_slides.py` para regenerar os `slid
 
 Para mudar a escala de um slide, ajuste o dicionário `BASES`. Os gráficos (ECharts em SVG) ficam em `graficos.js`, no objeto `window.G`.
 
+## PDF
+
+O arquivo `fiscalizacao-responsiva-oficina-ana-2026.pdf` tem uma página por slide. Gere-o de novo sempre que o deck mudar:
+
+```bash
+cd exportar && npm install
+node exportar-pdf.js .. ../fiscalizacao-responsiva-oficina-ana-2026.pdf
+```
+
+O exportador usa o Chrome (`/usr/bin/google-chrome`) e o `pdfunite`. Ele liga o modo "reduzir movimento", para que cada página saia no estado final, sem animação pela metade.
+
 ## Estrutura
 
 | Módulo | Slides |

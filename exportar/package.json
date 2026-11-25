@@ -1,0 +1,8 @@
+{
+  "name": "exportar-oficina-ana-2026",
+  "private": true,
+  "description": "Exporta o deck para PDF vetorial (uma página por slide)",
+  "dependencies": {
+    "puppeteer-core": "23.11.1"
+  }
+}
